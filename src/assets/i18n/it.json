@@ -13,6 +13,7 @@
   },
   "HEATMAP": {
     "TITLE": "Mappa mensile",
+    "PREV_MONTH": "Mese precedente",
     "VIEW_TOGGLE": {
       "UNIFIED": "Vista unificata",
       "PER_SUBJECT": "Per materia"

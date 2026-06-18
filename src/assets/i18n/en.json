@@ -13,6 +13,7 @@
   },
   "HEATMAP": {
     "TITLE": "Monthly heatmap",
+    "PREV_MONTH": "Previous month",
     "VIEW_TOGGLE": {
       "UNIFIED": "Unified view",
       "PER_SUBJECT": "Per subject"
