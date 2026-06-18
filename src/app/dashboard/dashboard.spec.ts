@@ -1,16 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TranslateFakeLoader, TranslateLoader, provideTranslateService } from '@ngx-translate/core';
-import { App } from './app';
+import { DashboardComponent } from './dashboard';
 
-describe('App', () => {
+describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [DashboardComponent],
       providers: [
-        provideRouter([]),
-        provideAnimationsAsync(),
         provideTranslateService({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
         }),
@@ -18,8 +14,8 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
+  it('should create', () => {
+    const fixture = TestBed.createComponent(DashboardComponent);
     expect(fixture.componentInstance).toBeTruthy();
   });
 });

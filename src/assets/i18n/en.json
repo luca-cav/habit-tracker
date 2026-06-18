@@ -1,0 +1,34 @@
+{
+  "APP": {
+    "TITLE": "Micro Habit Tracker"
+  },
+  "NAV": {
+    "DASHBOARD": "Dashboard",
+    "HEATMAP": "Heatmap",
+    "ARCHIVE": "Archive"
+  },
+  "DASHBOARD": {
+    "TITLE": "Today",
+    "CAP_REACHED": "You have reached the limit of 5 active subjects. Archive one subject to add another."
+  },
+  "HEATMAP": {
+    "TITLE": "Monthly heatmap",
+    "VIEW_TOGGLE": {
+      "UNIFIED": "Unified view",
+      "PER_SUBJECT": "Per subject"
+    }
+  },
+  "ARCHIVE": {
+    "TITLE": "Archive",
+    "EMPTY_STATE": "No archived subjects",
+    "REACTIVATE_CAP_ERROR": "5-subject limit reached. Archive a subject before reactivating another.",
+    "DELETE_CONFIRM_MESSAGE": "Permanently delete this subject? All historical data will be irreversibly removed."
+  },
+  "ERRORS": {
+    "STORAGE_UNAVAILABLE": "Unable to save data. Check your browser settings."
+  },
+  "DASHBOARD_HABIT_ROW": {
+    "NOTES_PLACEHOLDER": "Session notes...",
+    "HOURS_PLACEHOLDER": "Hours (e.g. 1.5)"
+  }
+}

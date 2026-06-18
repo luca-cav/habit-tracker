@@ -1,0 +1,34 @@
+{
+  "APP": {
+    "TITLE": "Micro Habit Tracker"
+  },
+  "NAV": {
+    "DASHBOARD": "Dashboard",
+    "HEATMAP": "Heatmap",
+    "ARCHIVE": "Archivio"
+  },
+  "DASHBOARD": {
+    "TITLE": "Oggi",
+    "CAP_REACHED": "Hai raggiunto il limite di 5 materie attive. Archivia una materia per aggiungerne un'altra."
+  },
+  "HEATMAP": {
+    "TITLE": "Mappa mensile",
+    "VIEW_TOGGLE": {
+      "UNIFIED": "Vista unificata",
+      "PER_SUBJECT": "Per materia"
+    }
+  },
+  "ARCHIVE": {
+    "TITLE": "Archivio",
+    "EMPTY_STATE": "Nessuna materia archiviata",
+    "REACTIVATE_CAP_ERROR": "Limite di 5 materie attive raggiunto. Archivia una materia prima di riattivarne un'altra.",
+    "DELETE_CONFIRM_MESSAGE": "Eliminare definitivamente questa materia? Tutti i dati storici saranno rimossi in modo irreversibile."
+  },
+  "ERRORS": {
+    "STORAGE_UNAVAILABLE": "Impossibile salvare i dati. Controlla le impostazioni del browser."
+  },
+  "DASHBOARD_HABIT_ROW": {
+    "NOTES_PLACEHOLDER": "Note sulla sessione...",
+    "HOURS_PLACEHOLDER": "Ore (es. 1.5)"
+  }
+}

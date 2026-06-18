@@ -1,0 +1,93 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: Lint, Test & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Check initial bundle size (≤ 500 KB gzipped)
+        run: |
+          TOTAL=0
+          FILES_FOUND=0
+          for f in dist/micro-habit-tracker/*.js dist/micro-habit-tracker/*.css; do
+            [ -f "$f" ] || continue
+            case "$f" in *chunk-*) continue ;; *\.map) continue ;; esac
+            FILES_FOUND=$((FILES_FOUND + 1))
+            SIZE=$(gzip -c "$f" | wc -c)
+            echo "  $(basename "$f"): ${SIZE} bytes gzipped"
+            TOTAL=$((TOTAL + SIZE))
+          done
+          if [ "$FILES_FOUND" -eq 0 ]; then
+            echo "FAIL: no initial bundle files found in dist/micro-habit-tracker/"
+            exit 1
+          fi
+          echo "Total initial gzipped bundle: ${TOTAL} bytes"
+          if [ "$TOTAL" -gt 512000 ]; then
+            echo "FAIL: bundle size ${TOTAL} bytes exceeds 500 KB limit"
+            exit 1
+          fi
+          echo "OK: bundle size within limit"
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: ci
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build for GitHub Pages
+        run: npm run build -- --base-href /micro-habit-tracker/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/micro-habit-tracker
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
